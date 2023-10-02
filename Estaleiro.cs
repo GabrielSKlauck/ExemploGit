@@ -9,10 +9,26 @@ namespace POO
 {
     public class Estaleiro
     {
-        private static List<Militar> listaMilitares = new List<Militar>();
-        private static List<Carga> listaCarga = new List<Carga>();
-        private static List<Civil> listaCivil = new List<Civil>();
+        private int id;
+        
+        public Estaleiro(int id)
+        {
+            this.Id = id;
+        }
 
+        private int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value; 
+            }
+        }
+
+        /*
         public string ListaTodos()
         {
             string mostra = "#### NAVIOS MILITARES ####\n";
@@ -257,6 +273,7 @@ namespace POO
 
             return civil;
         }
+        */
     }    
 }
     

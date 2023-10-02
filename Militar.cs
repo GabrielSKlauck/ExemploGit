@@ -8,28 +8,35 @@ namespace POO
 {
     public class Militar
     {
+        private int id;
         private string nome;
-        private string tipo;
-        private int qtdCanhoes;
-        private string comprador;
-        private double valor;
-        private int minPessoas;
+        private string tipo;        
+        private double valor;       
         private DateOnly prazo;
-        private string codigo;       
-        private List<int> listaNum = new List<int>();
+        private string codigo;               
 
-        public Militar(string nome, string tipo, string comprador, double valor, int minPessoas, DateOnly prazo)
+        public Militar(int id, string nome, string tipo, double valor, DateOnly prazo)
         {
+            this.id = id;
             this.Nome = nome;
-            this.Tipo = tipo;
-            this.Comprador = comprador;
-            this.Valor = valor;
-            this.MinPessoas = minPessoas;
-            this.Prazo = prazo;
-            this.QtdCanhoes = qtdCanhoes;
+            this.Tipo = tipo;           
+            this.Valor = valor;           
+            this.Prazo = prazo;            
             this.Codigo = codigo;
             
         }
+
+        private int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        } 
 
         private string Codigo
         {
@@ -81,36 +88,7 @@ namespace POO
                 }
                 
             }
-        }
-
-        private int QtdCanhoes
-        {
-            get {
-                return this.qtdCanhoes;            
-            }
-            set
-            {
-                if (this.tipo.Equals("Fragata"))
-                {
-                    this.qtdCanhoes = 6;
-                }else if (this.tipo.Equals("Porta-aviões"))
-                {
-                    this.qtdCanhoes = 0;
-                }               
-            }
-        }
-
-        private string Comprador
-        {
-            get
-            {
-                return this.comprador;
-            }
-            set
-            {
-                this.comprador = value;
-            }
-        }
+        }       
 
         private double Valor
         {
@@ -122,19 +100,7 @@ namespace POO
             {
                 this.valor = value;
             }
-        }
-
-        private int MinPessoas
-        {
-            get
-            {
-                return this.minPessoas;
-            }
-            set
-            {
-                this.minPessoas = value;
-            }
-        }
+        }    
 
         private DateOnly Prazo
         {
@@ -145,7 +111,7 @@ namespace POO
             set
             {
 
-                this.prazo = value.AddDays(0).AddMonths(0).AddYears(0);
+                this.prazo = value;
             }
         }       
 
@@ -176,7 +142,7 @@ namespace POO
 
         public string ToString()
         {
-            return nome + " " + tipo + " " + valor + " " + comprador + " " + prazo + " " + codigo;
+            return nome + " " + tipo + " " + valor + " " +  prazo + " " + codigo;
         }
     }
 }

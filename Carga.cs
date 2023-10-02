@@ -8,25 +8,49 @@ namespace POO
 {
     internal class Carga
     {
+        private int id;
         private string nome;
         private double maxCarga;
         private double comprimento;
         private double largura;
-        private double peso;
-        private int minPessoas;
+        private double valor;
         private DateOnly prazo;
         private string codigo;
 
-        public Carga(string nome, double maxCarga, double comprimento, double largura, double peso, int minPessoas, DateOnly prazo)
+        public Carga(int id, string nome, double maxCarga, double comprimento, double largura, DateOnly prazo, double valor)
         {
+            this.id = id;
             this.Nome = nome;
             this.MaxCarga = maxCarga;
             this.Comprimento = comprimento;
-            this.Largura = largura;
-            this.Peso = peso;
-            this.MinPessoas = minPessoas;
+            this.Largura = largura;                        
             this.Prazo = prazo;
+            this.valor = valor;
             this.Codigo = codigo;
+        }
+
+        private int Id
+        {
+            get
+            {
+                return id;
+            }
+            set
+            {
+                id = value;
+            }
+        }
+
+        private double Valor
+        {
+            get
+            {
+                return valor;
+            }
+            set
+            {
+                valor = value;
+            }
         }
 
         private string Codigo
@@ -97,31 +121,7 @@ namespace POO
             {
                 largura = value;
             }
-        }
-
-        public double Peso
-        {
-            get
-            {
-                return peso;
-            }
-            set
-            {
-                peso = value;
-            }
-        }
-
-        public int MinPessoas
-        {
-            get
-            {
-                return minPessoas;
-            }
-            set
-            {
-                minPessoas = value;
-            }
-        }
+        }        
 
         private DateOnly Prazo
         {
@@ -157,7 +157,7 @@ namespace POO
 
         public string ToString()
         {
-            return nome + " " + maxCarga + " " + comprimento + " " + peso + " " + codigo;
+            return nome + " " + maxCarga + " " + comprimento + " " + codigo;
         }
 
 

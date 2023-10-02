@@ -1,4 +1,5 @@
-﻿using System;
+﻿using POO.DAO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,10 @@ namespace POO
     {
         public static void Main(string[] args)
         {
-            Militar a1 = new Militar("BRAZILIAN BOAT", "Fragata", "Brasil", 250000000, 55, new DateOnly(2040, 09, 14));
-            Carga c1 = new Carga("Navio carga 1", 50000, 150, 30, 15000, 20, new DateOnly(2040, 09, 14));
-            Civil ci1 = new Civil("Lancha", 5, 120000, new DateOnly(2040, 09, 14), "Medio");
-            Estaleiro estaleiro = new Estaleiro();
-            while (true)
+            
+            Estaleiro estaleiro = new Estaleiro(1);
+            BancoDAO.InserirMilitar(1,"Navio muito foda","Fragata",23, new DateOnly(2030, 05, 05), "Fr34343sda");    
+           /* while (true)
             {
                 Console.WriteLine("Bem vindo ao sistema do estaleiro");
                 Console.WriteLine("1 - Listar todos os navios");
@@ -51,7 +51,7 @@ namespace POO
                         return;
 
                 }
-            }
+            }*/
         }
     }
 }
