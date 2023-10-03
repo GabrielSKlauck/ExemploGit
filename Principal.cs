@@ -13,8 +13,8 @@ namespace POO
         {
             
             Estaleiro estaleiro = new Estaleiro(1);
-            BancoDAO.InserirMilitar(1,"Navio muito foda","Fragata",23, new DateOnly(2030, 05, 05), "Fr34343sda");    
-           /* while (true)
+            
+            while (true)
             {
                 Console.WriteLine("Bem vindo ao sistema do estaleiro");
                 Console.WriteLine("1 - Listar todos os navios");
@@ -42,7 +42,7 @@ namespace POO
                         break;
                     case 4:
                         
-                        estaleiro.PrazoNavio();
+                        //estaleiro.PrazoNavio();
                         break;                    
                     case 0:
                         return;
@@ -51,7 +51,7 @@ namespace POO
                         return;
 
                 }
-            }*/
+            }
         }
     }
 }
