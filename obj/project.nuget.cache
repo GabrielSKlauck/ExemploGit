@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "hFvLlUwsUxaoDE3hipWNfXMw0jsrOONtZUtkOiSL9zoL964GsH5cJ+r7uV5TUrr5WETJno3kncsbc0hl6koQWg==",
+  "dgSpecHash": "54okeYWw5d15NfbwOYtCSGn6X9OxYLNmvQp0t0fIImxPmsuYjuso3IlEyt7iTn9os8aR+p2U50BM8RbHvAq9PQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\gabriel.klauck\\OneDrive - SENAC-SC\\Codigos\\POO\\POO\\POO\\POO.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\gabriel.klauck\\.nuget\\packages\\dapper\\2.1.4\\dapper.2.1.4.nupkg.sha512",
     "C:\\Users\\gabriel.klauck\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\gabriel.klauck\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\gabriel.klauck\\.nuget\\packages\\mysqlconnector\\2.2.7\\mysqlconnector.2.2.7.nupkg.sha512",

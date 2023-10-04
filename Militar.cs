@@ -142,7 +142,7 @@ namespace POO
 
         public string ToString()
         {
-            return nome + " " + tipo + " " + valor + " " +  prazo + " " + codigo;
+            return nome + " | " + tipo + " | " + valor + " | " +  prazo + " | " + codigo;
         }
     }
 }

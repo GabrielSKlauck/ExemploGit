@@ -27,8 +27,8 @@ namespace POO
                 switch (op)
                 {
                     case 1:
-                        
-                        Console.WriteLine(estaleiro.ListaTodos());
+
+                        estaleiro.ListaTodos();
                         break;
 
                     case 2:

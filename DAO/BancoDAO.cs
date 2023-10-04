@@ -1,4 +1,5 @@
-﻿using MySqlConnector;
+﻿using Dapper;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,54 +15,57 @@ namespace POO.DAO
         
         public static void InserirMilitar(string nome, string tipo, double valor, DateOnly data, string codigo)
         {
+            string dataFor = data.Day + "/" + data.Month + "/" + data.Year;
             string comando = $"INSERT INTO MILITAR (id, nome, tipo, codigo_navio, valor, prazo, estaleiro_id) " +
-                $"values (null, '{nome}', '{tipo}','{codigo}', {valor}, {data}, 1)";
+                $"values (null, '{nome}', '{tipo}','{codigo}', {valor}, STR_TO_DATE(\"{dataFor}\", \"%d/%m/%Y\"), 1)";
 
             try
             {
 
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
+                string MyConnection = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
 
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn = new MySqlConnection(MyConnection);
 
-                MySqlCommand MyCommand2 = new MySqlCommand(comando, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
-                Console.WriteLine("Save Data");
-                while (MyReader2.Read())
+                MySqlCommand MyCommand = new MySqlCommand(comando, MyConn);
+                MySqlDataReader MyReader;
+                MyConn.Open();
+                MyReader = MyCommand.ExecuteReader();
+
+                while (MyReader.Read())
                 {
                 }
-                MyConn2.Close();
+                MyConn.Close();
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+        
 
-        }
+    }
 
         public static void InserirCarga(string nome, double comp, double lar, string codigo, double peso, double valor, DateOnly data)
         {
+            string dataFor = data.Day + "/" + data.Month + "/" + data.Year;
             string comando = $"INSERT INTO CARGA (id, nome, comprimento, largura, codigo_navio, peso_maximo, valor, prazo, estaleiro_id) " +
-                $"values (null, '{nome}', {comp}, {lar}, '{codigo}',{peso}, {valor}, {data}, 1)";
+                $"values (null, '{nome}', {comp}, {lar}, '{codigo}',{peso}, {valor}, STR_TO_DATE(\"{dataFor}\", \"%d/%m/%Y\"), 1)";
 
             try
             {
 
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
+                string MyConnection = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
 
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn = new MySqlConnection(MyConnection);
 
-                MySqlCommand MyCommand2 = new MySqlCommand(comando, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
-                
-                while (MyReader2.Read())
+                MySqlCommand MyCommand = new MySqlCommand(comando, MyConn);
+                MySqlDataReader MyReader;
+                MyConn.Open();
+                MyReader = MyCommand.ExecuteReader();
+
+                while (MyReader.Read())
                 {
                 }
-                MyConn2.Close();
+                MyConn.Close();
             }
             catch (Exception ex)
             {
@@ -71,25 +75,26 @@ namespace POO.DAO
 
         public static void InserirCivil(string nome, int max, double valor, string porte, DateOnly data, string codigo)
         {
+            string dataFor = data.Day + "/" + data.Month + "/" + data.Year;
             string comando = $"INSERT INTO CIVIL (id, nome, maximo_pessoas, valor, porte, prazo, codigo_navio, estaleiro_id) " +
-                $"values (null, '{nome}', {max}, {valor}, '{porte}', {data}, '{codigo}', 1)";
+                $"values (null, '{nome}', {max}, {valor}, '{porte}', STR_TO_DATE(\"{dataFor}\", \"%d/%m/%Y\"), '{codigo}', 1)";
 
             try
             {
 
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
+                string MyConnection = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
 
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn = new MySqlConnection(MyConnection);
 
-                MySqlCommand MyCommand2 = new MySqlCommand(comando, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
+                MySqlCommand MyCommand = new MySqlCommand(comando, MyConn);
+                MySqlDataReader MyReader;
+                MyConn.Open();
+                MyReader = MyCommand.ExecuteReader();     
 
-                while (MyReader2.Read())
+                while (MyReader.Read())
                 {
                 }
-                MyConn2.Close();
+                MyConn.Close();
             }
             catch (Exception ex)
             {
@@ -138,6 +143,25 @@ namespace POO.DAO
             }
         }
 
-        
+        public static async void ListaTodos()
+        {
+            string comando = "SELECT * FROM MILITAR";
+            string banco = "port=3306;username=root;password=root;database=mydb";
+            string listagem = "";
+
+            using (var db = new SqlConnection(banco))
+            {
+                await db.OpenAsync();
+                var query = "SELECT * FROM MILITAR";
+                var Militar = await db.QueryAsync<Militar>(query);
+
+                foreach (var i in Militar)
+                {
+                    listagem += i.ToString() + "\n";
+                }
+            }
+
+            Console.WriteLine(listagem);
+        }
     }
 }

@@ -33,31 +33,9 @@ namespace POO
         }
 
         
-        public string ListaTodos()
+        public void ListaTodos()
         {
-            String mostra = "";
-            try
-            {
-                string MyConnection2 = "datasource=localhost;port=3307;username=root;password=root;database=mydb";
-                
-                string Query = "select * from militar,carga,civil;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                
-                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
-                MyAdapter.SelectCommand = MyCommand2;
-
-                mostra = MyAdapter.ToString();
-                
-                 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-
-
-            return mostra;
+            BancoDAO.ListaTodos();
         }
 
         public void InsereNavio()
@@ -75,7 +53,7 @@ namespace POO
                     Console.WriteLine("Tipo: ");
                     string tipo = Console.ReadLine();                   
 
-                    Console.WriteLine();
+                    Console.WriteLine("Codigo do navio: ");
                     string codigo = Console.ReadLine(); 
 
                     Console.WriteLine("Valor: ");
