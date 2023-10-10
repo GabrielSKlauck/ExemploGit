@@ -206,6 +206,21 @@ namespace POO.DAO
                 }*/
 
         }
+
+        public static async void GetNavio()
+        {
+            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
+            {
+                //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
+
+                var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR");
+                foreach (EntidadeMilitar e in navio)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+
+            }
+        }
         }
     }
 
