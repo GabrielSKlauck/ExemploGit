@@ -8,7 +8,7 @@ namespace POO
 {
     internal class Carga
     {
-        private int id;
+       // private int id;
         private string nome;
         private double maxCarga;
         private double comprimento;
@@ -17,9 +17,9 @@ namespace POO
         private DateOnly prazo;
         private string codigo;
 
-        public Carga(int id, string nome, double maxCarga, double comprimento, double largura, DateOnly prazo, double valor)
+        public Carga(/*int id, */string nome, double maxCarga, double comprimento, double largura, DateOnly prazo, double valor)
         {
-            this.id = id;
+           // this.id = id;
             this.Nome = nome;
             this.MaxCarga = maxCarga;
             this.Comprimento = comprimento;
@@ -29,7 +29,7 @@ namespace POO
             this.Codigo = codigo;
         }
 
-        private int Id
+        /*private int Id
         {
             get
             {
@@ -39,7 +39,7 @@ namespace POO
             {
                 id = value;
             }
-        }
+        }*/
 
         private double Valor
         {

@@ -14,6 +14,7 @@ namespace POO
     public class Estaleiro
     {
         private int id;
+        private ArquivoDAO operacoes = new ArquivoDAO();
         
         public Estaleiro(int id)
         {
@@ -69,6 +70,8 @@ namespace POO
 
                     DateOnly data = new DateOnly(ano, mes, dia);
                     BancoDAO.InserirMilitar(nome,tipo,valor, data, codigo);
+                    //Militar nav = new Militar(nome, tipo, valor, data);
+                    //operacoes.AdicionarMilitar(nav);
 
                     break;
                 case 2:
@@ -81,8 +84,8 @@ namespace POO
                     Console.WriteLine("Largura: ");
                     double lar = Convert.ToDouble(Console.ReadLine());                    
 
-                    Console.WriteLine("Codigo: ");
-                    codigo = Console.ReadLine();
+                   // Console.WriteLine("Codigo: ");
+                   // codigo = Console.ReadLine();
 
                     Console.WriteLine("Peso: ");
                     double peso = Convert.ToDouble(Console.ReadLine());
@@ -99,7 +102,9 @@ namespace POO
                     ano = Convert.ToInt32(Console.ReadLine());
 
                     data = new DateOnly(ano, mes, dia);
-                    BancoDAO.InserirCarga(nome, comp, lar, codigo, peso, valor, data);
+                    //BancoDAO.InserirCarga(nome, comp, lar, codigo, peso, valor, data);
+                    Carga navio = new Carga(nome, peso, comp, lar, data, valor);
+                   // operacoes.Adicionar(navio);
                     break;
                 case 3:
                     Console.WriteLine("Nome: ");
@@ -114,8 +119,8 @@ namespace POO
                     Console.WriteLine("Porte");
                     string porte = Console.ReadLine();
 
-                    Console.WriteLine("Codigo: ");
-                    codigo = Console.ReadLine();
+                    //Console.WriteLine("Codigo: ");
+                    //codigo = Console.ReadLine();
 
                     Console.WriteLine("Prazo (PADRAO AMERICANO): ");
                     Console.WriteLine("DIA: ");
@@ -126,7 +131,8 @@ namespace POO
                     ano = Convert.ToInt32(Console.ReadLine());
 
                     data = new DateOnly(ano, mes, dia);
-                    BancoDAO.InserirCivil(nome,max,valor,porte,data,codigo);
+                    //BancoDAO.InserirCivil(nome,max,valor,porte,data,codigo);
+                  //  Civil navio = new Civil(nome, max, valor, data, porte);
                     break;
                 default:
                     Console.WriteLine("Invalido");

@@ -12,18 +12,32 @@ namespace POO
         private string nome;
         private string tipo;        
         private double valor;       
-        private DateOnly prazo;
-        private string codigo;               
+        private DateTime prazo;
+        private string codigo;
+        private int estaleiroId;
 
-        public Militar(int id, string nome, string tipo, double valor, DateOnly prazo)
+        public Militar()
         {
-            this.id = id;
+            this.Id = id;
             this.Nome = nome;
             this.Tipo = tipo;           
             this.Valor = valor;           
             this.Prazo = prazo;            
             this.Codigo = codigo;
+            this.EstaleiroId = estaleiroId;
             
+        }
+
+        private int EstaleiroId
+        {
+            get
+            {
+                return estaleiroId;
+            }
+            set
+            {
+                estaleiroId = value;
+            }
         }
 
         private int Id
@@ -102,7 +116,7 @@ namespace POO
             }
         }    
 
-        private DateOnly Prazo
+        private DateTime Prazo
         {
             get
             {
@@ -135,7 +149,7 @@ namespace POO
             return this.codigo;
         }
 
-        public DateOnly RetornaPrazo()
+        public DateTime RetornaPrazo()
         {
             return this.prazo;
         }

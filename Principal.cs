@@ -13,7 +13,9 @@ namespace POO
         {
             
             Estaleiro estaleiro = new Estaleiro(1);
+            ArquivoDAO ar = new ArquivoDAO();
             
+
             while (true)
             {
                 Console.WriteLine("Bem vindo ao sistema do estaleiro");
@@ -32,8 +34,8 @@ namespace POO
                         break;
 
                     case 2:
-                        Console.Clear();
-                        estaleiro.InsereNavio();
+                        Console.Clear();                       
+                       estaleiro.InsereNavio();
                         break;
 
                     case 3:

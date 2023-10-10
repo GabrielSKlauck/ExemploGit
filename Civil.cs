@@ -8,7 +8,7 @@ namespace POO
 {
     internal class Civil
     {
-        private int id;
+       // private int id;
         private string nome;
         private int maxPessoas;
         private double valor;
@@ -16,9 +16,9 @@ namespace POO
         private string porte;
         private string codigo;
 
-        public Civil(int id, string nome, int maxPessoas, double valor, DateOnly prazo, string porte)
+        public Civil(/*int id, */string nome, int maxPessoas, double valor, DateOnly prazo, string porte)
         {
-            this.Id = id;
+           // this.Id = id;
             this.Nome = nome;
             this.MaxPessoas = maxPessoas;
             this.Valor = valor;
@@ -27,7 +27,7 @@ namespace POO
             this.Codigo = codigo;
         }
 
-        private int Id
+      /*  private int Id
         {
             get
             {
@@ -37,7 +37,7 @@ namespace POO
             {
                 id = value;
             }
-        }
+        }*/
 
         private string Codigo
         {

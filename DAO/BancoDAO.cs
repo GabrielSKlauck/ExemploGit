@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -145,23 +146,66 @@ namespace POO.DAO
 
         public static async void ListaTodos()
         {
-            string comando = "SELECT * FROM MILITAR";
-            string banco = "port=3306;username=root;password=root;database=mydb";
-            string listagem = "";
 
-            using (var db = new SqlConnection(banco))
+            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
             {
-                await db.OpenAsync();
-                var query = "SELECT * FROM MILITAR";
-                var Militar = await db.QueryAsync<Militar>(query);
+                //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
 
-                foreach (var i in Militar)
+                var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR");
+                foreach (EntidadeMilitar e in navio)
                 {
-                    listagem += i.ToString() + "\n";
-                }
+                    Console.WriteLine(e.ToString());
+                }              
+                
             }
+            
 
-            Console.WriteLine(listagem);
+            /*List<Militar> lista = new List<Militar>();
+            const string connectionString = @"Server=localhost,3306;Database=mydb;User ID=root;Password=root;Encrypt=false;Trusted_Connection=True;TrustServerCertificate=True;MultiSubnetFailover=True";
+
+            using (var con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    var query = "SELECT * FROM MILITAR";
+                    lista = con.Query<Militar>(query).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+
+                foreach (var item in lista)
+                {
+                    Console.WriteLine($"{item.ToString()}");
+                }
+
+                /*
+                const string connectionString = "Server=localhost,3306;Database=mydb;User ID=root;Password=root;Encrypt=false;Trusted_Connection=True;TrustServerCertificate=True;MultiSubnetFailover=True";
+                await using (var connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        var navios = connection.Query<Militar>("SELECT * FROM militar");
+
+                        foreach (var navio in navios)
+                        {
+                            Console.WriteLine(navios.ToString());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+
+                }*/
+
+        }
         }
     }
-}
+
