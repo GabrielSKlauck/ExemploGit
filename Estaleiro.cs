@@ -154,6 +154,14 @@ namespace POO
             BancoDAO.Remove(codigo, op);
         }
 
+        public void GetNavio()
+        {
+            Console.WriteLine("Qual o codigo do navio?");
+            string codigo = Console.ReadLine();
+
+            BancoDAO.GetNavio(codigo);
+        }
+
        /* public DateOnly PrazoNavio()
         {
             return null;

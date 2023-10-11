@@ -207,19 +207,48 @@ namespace POO.DAO
 
         }
 
-        public static async void GetNavio()
+        public static async void GetNavio(string codigo, int op)
         {
-            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
+            switch (op)
             {
-                //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
+                case 1:
+                    using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
+                    {
+                        //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
 
-                var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR");
-                foreach (EntidadeMilitar e in navio)
-                {
-                    Console.WriteLine(e.ToString());
-                }
+                        var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR WHERE CODIGO_NAVIO LIKE \"{codigo}\"");
+                        foreach (EntidadeMilitar e in navio)
+                        {
+                            Console.WriteLine(e.ToString());
+                        }
+
+
+                    }
+                break;
+
+                case 2:
+                    using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
+                    {
+                        //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
+
+                        var navio = connection.Query<EntidadeCarga>($"SELECT ID, NOME, COMPRIMENTO, LARGURA, CODIGO_NAVIO, PESO_MAXIMO, VALOR, PRAZO," +
+                            $" Estaleiro_ID FROM CARGA WHERE CODIGO_NAVIO LIKE \"{codigo}\"");
+                        foreach (EntidadeCarga e in navio)
+                        {
+                            Console.WriteLine(e.ToString());
+                        }
+
+
+                    }
+                break;
 
             }
+            
+        }
+
+        public static void UpdateNavio(string codigo)
+        {
+            string comando = "UPDATE TABLE MILITAR ";
         }
         }
     }
