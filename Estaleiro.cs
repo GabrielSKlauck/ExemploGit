@@ -159,13 +159,12 @@ namespace POO
             Console.WriteLine("Qual o codigo do navio?");
             string codigo = Console.ReadLine();
 
-            BancoDAO.GetNavio(codigo);
+            Console.WriteLine("Qual o tipo do navio? \n1 - Militar \n2 - Carga \n3 - Civil");
+            int tipo = Convert.ToInt32(Console.ReadLine());
+            
+            BancoDAO.GetNavio(codigo, tipo);
         }
-
-       /* public DateOnly PrazoNavio()
-        {
-            return null;
-        }       */          
+        
     }    
 }
     

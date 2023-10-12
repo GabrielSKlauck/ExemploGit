@@ -20,7 +20,7 @@ namespace POO.DAO
 
         public string ToString()
         {
-            return return NOME + " | " + PESO_MAXIMO + " | " + CODIGO_NAVIO + " | " + VALOR + " | " + PRAZO;
+            return NOME + " | " + PESO_MAXIMO + " | " + CODIGO_NAVIO + " | " + VALOR + " | " + PRAZO;
         }
     }
 }

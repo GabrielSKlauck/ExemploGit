@@ -22,7 +22,7 @@ namespace POO
                 Console.WriteLine("1 - Listar todos os navios");
                 Console.WriteLine("2 - Inserir construçao de um novo navio");
                 Console.WriteLine("3 - Cancelar construçao");
-                Console.WriteLine("4 - Verificar navio");                
+                Console.WriteLine("4 - Verificar navio em especifico");               
                 Console.WriteLine("0 - Sair");
                 int op = Convert.ToInt32(Console.ReadLine());
 
@@ -45,7 +45,8 @@ namespace POO
                     case 4:
                         
                         estaleiro.GetNavio();
-                        break;                    
+                        break;     
+                   
                     case 0:
                         return;
                     default:

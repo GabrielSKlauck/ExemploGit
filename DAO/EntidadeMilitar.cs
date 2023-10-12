@@ -21,7 +21,7 @@ namespace POO.DAO
 
         public string ToString()
         {
-            return NOME + " | " + TIPO + " | " + CODIGO_NAVIO + " | "+ VALOR + " | " + PRAZO ;
+            return NOME + " | " + TIPO + " | " + CODIGO_NAVIO + " | " + VALOR + " | " + PRAZO ;
         }
 
         public string RetornaCodigo()
