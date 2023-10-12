@@ -13,7 +13,7 @@ namespace POO.DAO
 {
     static class BancoDAO
     {
-        
+        private const string conexao = "Server=localhost;Database=mydb;User=root;Password=root;";
         public static void InserirMilitar(string nome, string tipo, double valor, DateOnly data, string codigo)
         {
             string dataFor = data.Day + "/" + data.Month + "/" + data.Year;
@@ -146,10 +146,10 @@ namespace POO.DAO
 
         public static async void ListaTodos()
         {
-
-            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
+            Console.WriteLine("\n======== MILITARES ========");
+            using (MySqlConnection connection = new MySqlConnection(conexao))
             {
-                //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
+                
 
                 var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR");
                 foreach (EntidadeMilitar e in navio)
@@ -158,68 +158,89 @@ namespace POO.DAO
                 }              
                 
             }
-            
-
-            /*List<Militar> lista = new List<Militar>();
-            const string connectionString = @"Server=localhost,3306;Database=mydb;User ID=root;Password=root;Encrypt=false;Trusted_Connection=True;TrustServerCertificate=True;MultiSubnetFailover=True";
-
-            using (var con = new SqlConnection(connectionString))
+            Console.WriteLine("\n======== CARGA ========");
+            using (MySqlConnection connection = new MySqlConnection(conexao))
             {
-                try
-                {
-                    con.Open();
-                    var query = "SELECT * FROM MILITAR";
-                    lista = con.Query<Militar>(query).ToList();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                finally
-                {
-                    con.Close();
-                }
 
-                foreach (var item in lista)
-                {
-                    Console.WriteLine($"{item.ToString()}");
-                }
 
-                /*
-                const string connectionString = "Server=localhost,3306;Database=mydb;User ID=root;Password=root;Encrypt=false;Trusted_Connection=True;TrustServerCertificate=True;MultiSubnetFailover=True";
-                await using (var connection = new SqlConnection(connectionString))
-                {
-                    try
-                    {
-                        var navios = connection.Query<Militar>("SELECT * FROM militar");
-
-                        foreach (var navio in navios)
-                        {
-                            Console.WriteLine(navios.ToString());
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-
-                }*/
-
-        }
-
-        public static async void GetNavio()
-        {
-            using (MySqlConnection connection = new MySqlConnection("Server=localhost;Database=mydb;User=root;Password=root;"))
-            {
-                //"ID as id, NOME as Nome, TIPO as tipo, VALOR as valor, PRAZO as prazo, CODIGO_NAVIO as codigo, Estaleiro_ID as estaleiroId"
-
-                var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR");
-                foreach (EntidadeMilitar e in navio)
+                var navio = connection.Query<EntidadeCarga>($"SELECT ID, NOME, COMPRIMENTO, LARGURA, CODIGO_NAVIO, PESO_MAXIMO, VALOR, PRAZO, Estaleiro_ID FROM CARGA");
+                foreach (EntidadeCarga e in navio)
                 {
                     Console.WriteLine(e.ToString());
                 }
 
             }
+            Console.WriteLine("\n======== CIVIL ========");
+            using (MySqlConnection connection = new MySqlConnection(conexao))
+            {
+
+
+                var navio = connection.Query<EntidadeCivil>($"SELECT ID, NOME, MAXIMO_PESSOAS, VALOR, PORTE, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM CIVIL");
+                foreach (EntidadeCivil e in navio)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                Console.WriteLine("\n");
+            }
+
+
+
+
+        }
+
+        public static async void GetNavio(string codigo, int op)
+        {
+            switch (op)
+            {
+                case 1:
+                    using (MySqlConnection connection = new MySqlConnection(conexao))
+                    {
+                        
+                        var navio = connection.Query<EntidadeMilitar>($"SELECT ID, NOME, TIPO, VALOR, PRAZO, CODIGO_NAVIO, Estaleiro_ID FROM MILITAR WHERE CODIGO_NAVIO LIKE \"{codigo}\"");
+                        foreach (EntidadeMilitar e in navio)
+                        {
+                            Console.WriteLine(e.ToString());
+                        }
+
+
+                    }
+                break;
+
+                case 2:
+                    using (MySqlConnection connection = new MySqlConnection(conexao))
+                    {
+                        
+
+                        var navio = connection.Query<EntidadeCarga>($"SELECT ID, NOME, COMPRIMENTO, LARGURA, CODIGO_NAVIO, PESO_MAXIMO, VALOR, PRAZO," +
+                            $" Estaleiro_ID FROM CARGA WHERE CODIGO_NAVIO LIKE \"{codigo}\"");
+                        foreach (EntidadeCarga e in navio)
+                        {
+                            Console.WriteLine(e.ToString());
+                        }
+                    }
+                break;
+
+                case 3:
+                    using (MySqlConnection connection = new MySqlConnection(conexao))
+                    {
+                        
+
+                        var navio = connection.Query<EntidadeCivil>($"SELECT ID, NOME, MAXIMO_PESSOAS, VALOR, PORTE, PRAZO, CODIGO_NAVIO, Estaleiro_ID" +
+                            $" FROM CIVIL WHERE CODIGO_NAVIO LIKE \"{codigo}\"");
+                        foreach (EntidadeCivil e in navio)
+                        {
+                            Console.WriteLine(e.ToString());
+                        }
+                    }
+                    break;
+
+            }
+            
+        }
+
+        public static void UpdateNavio(string codigo)
+        {
+            string comando = "UPDATE TABLE MILITAR ";
         }
         }
     }
