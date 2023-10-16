@@ -14,10 +14,10 @@ namespace POO
         private double comprimento;
         private double largura;
         private double valor;
-        private DateOnly prazo;
+        private DateTime prazo;
         private string codigo;
 
-        public Carga(/*int id, */string nome, double maxCarga, double comprimento, double largura, DateOnly prazo, double valor)
+        public Carga(/*int id, */string nome, double maxCarga, double comprimento, double largura, DateTime prazo, double valor)
         {
            // this.id = id;
             this.Nome = nome;
@@ -123,7 +123,7 @@ namespace POO
             }
         }        
 
-        private DateOnly Prazo
+        private DateTime Prazo
         {
             get
             {
@@ -141,7 +141,7 @@ namespace POO
             return this.codigo;
         }
 
-        public DateOnly RetornaPrazo()
+        public DateTime RetornaPrazo()
         {
             return this.prazo;
         }

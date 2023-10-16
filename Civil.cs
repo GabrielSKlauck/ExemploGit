@@ -12,11 +12,11 @@ namespace POO
         private string nome;
         private int maxPessoas;
         private double valor;
-        private DateOnly prazo;
+        private DateTime prazo;
         private string porte;
         private string codigo;
 
-        public Civil(/*int id, */string nome, int maxPessoas, double valor, DateOnly prazo, string porte)
+        public Civil(/*int id, */string nome, int maxPessoas, double valor, DateTime prazo, string porte)
         {
            // this.Id = id;
             this.Nome = nome;
@@ -97,7 +97,7 @@ namespace POO
             }
         }
 
-        private DateOnly Prazo
+        private DateTime Prazo
         {
             get
             {
@@ -127,7 +127,7 @@ namespace POO
             return this.codigo;
         }
 
-        public DateOnly RetornaPrazo()
+        public DateTime RetornaPrazo()
         {
             return this.prazo;
         }

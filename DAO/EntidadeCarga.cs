@@ -8,15 +8,17 @@ namespace POO.DAO
 {
     public class EntidadeCarga
     {
-        private int ID;
-        private string NOME;
-        private string COMPRIMENTO;
-        private string LARGURA;       
-        private string CODIGO_NAVIO;
-        private double PESO_MAXIMO;
-        private double VALOR;
-        private DateTime PRAZO;
-        private int Estaleiro_ID;
+       
+        public int ID { get; set; }
+        public string NOME { get; set; }
+        public double COMPRIMENTO { get; set; }
+        public double LARGURA { get; set; }
+        public string CODIGO_NAVIO { get; set; }
+        public double PESO_MAXIMO { get; set; }
+        public double VALOR { get; set; }
+        public DateTime PRAZO { get; set; }
+        public int Estaleiro_ID { get; set; }
+       
 
         public string ToString()
         {
