@@ -1,5 +1,6 @@
 ﻿using MySqlConnector;
 using POO.DAO;
+using POO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,7 @@ namespace POO
     public class Estaleiro
     {
         private int id;
-        private ArquivoDAO operacoes = new ArquivoDAO();
+        private BancoDAO bancoDAO = new BancoDAO();
         
         public Estaleiro(int id)
         {
@@ -55,7 +56,7 @@ namespace POO
                     string tipo = Console.ReadLine();                   
 
                     Console.WriteLine("Codigo do navio: ");
-                    string codigo = Console.ReadLine(); 
+                    string codigo = Utilitarios.GerarCodigoNavio(nome, tipo);
 
                     Console.WriteLine("Valor: ");
                     double valor = Convert.ToDouble(Console.ReadLine());                   
@@ -69,7 +70,10 @@ namespace POO
                     int ano = Convert.ToInt32(Console.ReadLine());
 
                     DateTime data = new DateTime(ano, mes, dia);
-                    BancoDAO.InserirMilitar(nome,tipo,valor, data, codigo);
+
+                    Militar militar = new Militar(nome, tipo,codigo, valor, data);
+
+                    bancoDAO.InserirMilitar(militar);
                     //Militar nav = new Militar(nome, tipo, valor, data);
                     //operacoes.AdicionarMilitar(nav);
 
@@ -84,8 +88,8 @@ namespace POO
                     Console.WriteLine("Largura: ");
                     double lar = Convert.ToDouble(Console.ReadLine());                    
 
-                    Console.WriteLine("Codigo: ");
-                    codigo = Console.ReadLine();
+                    //Console.WriteLine("Codigo: ");
+                   // codigo = Console.ReadLine();
 
                     Console.WriteLine("Peso: ");
                     double peso = Convert.ToDouble(Console.ReadLine());
@@ -102,8 +106,8 @@ namespace POO
                     ano = Convert.ToInt32(Console.ReadLine());
 
                     data = new DateTime(ano, mes, dia);
-                    BancoDAO.InserirCarga(nome, comp, lar, codigo, peso, valor, data);
-                    Carga navio = new Carga(nome, peso, comp, lar, data, valor);
+                    //BancoDAO.InserirCarga(nome, comp, lar, codigo, peso, valor, data);
+                    //Carga navio = new Carga(nome, peso, comp, lar, data, valor);
                    
                     break;
                 case 3:
@@ -119,8 +123,8 @@ namespace POO
                     Console.WriteLine("Porte");
                     string porte = Console.ReadLine();
 
-                    Console.WriteLine("Codigo: ");
-                    codigo = Console.ReadLine();
+                   // Console.WriteLine("Codigo: ");
+                    //codigo = Console.ReadLine();
 
                     Console.WriteLine("Prazo (PADRAO AMERICANO): ");
                     Console.WriteLine("DIA: ");
@@ -131,7 +135,7 @@ namespace POO
                     ano = Convert.ToInt32(Console.ReadLine());
 
                     data = new DateTime(ano, mes, dia);
-                    BancoDAO.InserirCivil(nome,max,valor,porte,data,codigo);
+                   // BancoDAO.InserirCivil(nome,max,valor,porte,data,codigo);
                   
                     break;
                 default:
@@ -163,6 +167,11 @@ namespace POO
             int tipo = Convert.ToInt32(Console.ReadLine());
             
             BancoDAO.GetNavio(codigo, tipo);
+        }
+        
+        public void UpdateNavio()
+        {
+
         }
         
     }    
