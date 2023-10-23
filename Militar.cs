@@ -8,35 +8,33 @@ namespace POO
 {
     public class Militar
     {
-        private int id;
-        private string nome;
-        private string tipo;        
-        private double valor;       
-        private DateTime prazo;
-        private string codigo;
-        private int estaleiroId;
+        private int ID;
+        private string NOME;
+        private string TIPO;        
+        private double VALOR;       
+        private DateTime PRAZO;
+        private string CODIGO;
+        private int ESTALEIROID;
 
-        public Militar()
+        public Militar(string NOME, string TIPO, string COIGO, double VALOR, DateTime PRAZO)
         {
-            this.Id = id;
-            this.Nome = nome;
-            this.Tipo = tipo;           
-            this.Valor = valor;           
-            this.Prazo = prazo;            
-            this.Codigo = codigo;
-            this.EstaleiroId = estaleiroId;
             
-        }
+            this.Nome = NOME;
+            this.Tipo = TIPO;
+            this.Valor = VALOR;
+            this.Prazo = PRAZO;
+            this.Codigo = CODIGO;
+        }                
 
         private int EstaleiroId
         {
             get
             {
-                return estaleiroId;
+                return ESTALEIROID;
             }
             set
             {
-                estaleiroId = value;
+                ESTALEIROID = value;
             }
         }
 
@@ -44,11 +42,11 @@ namespace POO
         {
             get
             {
-                return id;
+                return ID;
             }
             set
             {
-                id = value;
+                ID = value;
             }
         } 
 
@@ -56,26 +54,26 @@ namespace POO
         {
             get
             {
-                return codigo;
+                return CODIGO;
             }
             set
             {
-                Random ale = new Random(10);
+                Random ale = new Random(5);
                 
-                value = tipo.Substring(0, 2) + ale.Next() + nome.Substring(0,2);
-                codigo = value;
+                value = TIPO.Substring(0, 2) + ale.Next() + NOME.Substring(0,2);
+                CODIGO = value;
             }
         }
 
         private string Nome{
             get{
-                return this.nome;
+                return this.NOME;
             }
             set
             {
                 if (!string.IsNullOrEmpty(value))
                 {
-                    this.nome = value;
+                    this.NOME = value;
                 }
                 else
                 {
@@ -88,13 +86,13 @@ namespace POO
         private string Tipo
         {
             get { 
-                return this.tipo;
+                return this.TIPO;
             }
             set
             {
                 if (value.Equals("Fragata") || value.Equals("Porta-aviões"))
                 {                    
-                    this.tipo = value;                    
+                    this.TIPO = value;                    
                 }
                 else
                 {
@@ -108,11 +106,11 @@ namespace POO
         {
             get
             {
-                return this.valor;  
+                return this.VALOR;  
             }
             set
             {
-                this.valor = value;
+                this.VALOR = value;
             }
         }    
 
@@ -120,12 +118,13 @@ namespace POO
         {
             get
             {
-                return this.prazo;
+                return this.PRAZO;
             }
             set
             {
 
-                this.prazo = value;
+                DateTime dataFor = DateTime.Parse(value.Day + "/" + value.Month + "/" + value.Year);
+                PRAZO = dataFor;
             }
         }       
 
@@ -146,17 +145,17 @@ namespace POO
         
         public string RetornaCodigo()
         {
-            return this.codigo;
+            return this.CODIGO;
         }
 
         public DateTime RetornaPrazo()
         {
-            return this.prazo;
+            return this.PRAZO;
         }
 
         public string ToString()
         {
-            return nome + " | " + tipo + " | " + valor + " | " +  prazo + " | " + codigo;
+            return NOME + " | " + TIPO + " | " + VALOR + " | " +  PRAZO + " | " + CODIGO;
         }
     }
 }

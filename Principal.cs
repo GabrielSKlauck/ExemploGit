@@ -1,4 +1,5 @@
 ﻿using POO.DAO;
+using POO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,7 @@ namespace POO
         public static void Main(string[] args)
         {
             
-            Estaleiro estaleiro = new Estaleiro(1);
-            ArquivoDAO ar = new ArquivoDAO();
-            
+            Estaleiro estaleiro = new Estaleiro(1);           
 
             while (true)
             {
@@ -22,7 +21,8 @@ namespace POO
                 Console.WriteLine("1 - Listar todos os navios");
                 Console.WriteLine("2 - Inserir construçao de um novo navio");
                 Console.WriteLine("3 - Cancelar construçao");
-                Console.WriteLine("4 - Verificar navio em especifico");               
+                Console.WriteLine("4 - Verificar navio em especifico");  
+                Console.WriteLine("5 - Alterar navio");
                 Console.WriteLine("0 - Sair");
                 int op = Convert.ToInt32(Console.ReadLine());
 
@@ -45,8 +45,10 @@ namespace POO
                     case 4:
                         
                         estaleiro.GetNavio();
-                        break;     
-                   
+                        break;
+                    case 5:
+                        estaleiro.UpdateNavio();
+                    break;
                     case 0:
                         return;
                     default:

@@ -11,39 +11,47 @@ using System.Threading.Tasks;
 
 namespace POO.DAO
 {
-    static class BancoDAO
+    public class BancoDAO:ConexaoBD
     {
         private const string conexao = "Server=localhost;Database=mydb;User=root;Password=root;";
-        public static void InserirMilitar(string nome, string tipo, double valor, DateTime data, string codigo)
+        public void InserirMilitar(Militar militar)
         {
-            string dataFor = data.Day + "/" + data.Month + "/" + data.Year;
-            string comando = $"INSERT INTO MILITAR (id, nome, tipo, codigo_navio, valor, prazo, estaleiro_id) " +
-                $"values (null, '{nome}', '{tipo}','{codigo}', {valor}, STR_TO_DATE(\"{dataFor}\", \"%d/%m/%Y\"), 1)";
+            /* string dataFor = data.Day + "/" + data.Month + "/" + data.Year;
+             string comando = $"INSERT INTO MILITAR (id, nome, tipo, codigo_navio, valor, prazo, estaleiro_id) " +
+                 $"values (null, '{nome}', '{tipo}','{codigo}', {valor}, STR_TO_DATE(\"{dataFor}\", \"%d/%m/%Y\"), 1)";
 
-            try
-            {
+             try
+             {
 
-                string MyConnection = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
+                 string MyConnection = "datasource=localhost;port=3306;username=root;password=root;database=mydb";
 
-                MySqlConnection MyConn = new MySqlConnection(MyConnection);
+                 MySqlConnection MyConn = new MySqlConnection(MyConnection);
 
-                MySqlCommand MyCommand = new MySqlCommand(comando, MyConn);
-                MySqlDataReader MyReader;
-                MyConn.Open();
-                MyReader = MyCommand.ExecuteReader();
+                 MySqlCommand MyCommand = new MySqlCommand(comando, MyConn);
+                 MySqlDataReader MyReader;
+                 MyConn.Open();
+                 MyReader = MyCommand.ExecuteReader();
 
-                while (MyReader.Read())
-                {
-                }
-                MyConn.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        
+                 while (MyReader.Read())
+                 {
+                 }
+                 MyConn.Close();
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine(ex.Message);
+             }*/
 
-    }
+
+            string dataFor = militar.RetornaPrazo().Day + "/" + militar.RetornaPrazo().Month+ "/" + militar.RetornaPrazo().Year;
+            string sql = $"INSERT INTO MILITAR VALUE (null, @NOME, @TIPO, @CODIGO_NAVIO, @VALOR, @PRAZO, 1) ";
+            
+            this.Execute(sql, militar);
+            //Console.WriteLine($"Produto inserido - {linhas} linhas afetadas");
+
+
+
+        }
 
         public static void InserirCarga(string nome, double comp, double lar, string codigo, double peso, double valor, DateTime data)
         {
@@ -64,7 +72,7 @@ namespace POO.DAO
             {
                 
                 int linhas = connection.Execute(comando, ca);
-                Console.WriteLine($"Tipo inserido - {linhas} linhas afetadas");
+                
             }
         }
 
